@@ -34,7 +34,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /home/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
        // to use the same node and workdir defined on top-level pipeline for all docker agents
        reuseNode true
       }
@@ -47,7 +47,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /home/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
        reuseNode true
       }
      }
@@ -72,7 +72,7 @@ pipeline {
    agent {
     docker {
      image 'maven:3.6.0-jdk-8-alpine'
-     args '-v /home/.m2/repository:/root/.m2/repository'
+     args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
      reuseNode true
     }
    }
@@ -92,7 +92,7 @@ pipeline {
    agent {
     docker {
      image 'maven:3.6.0-jdk-8-alpine'
-     args '-v /home/.m2/repository:/root/.m2/repository'
+     args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
      reuseNode true
     }
    }
@@ -117,7 +117,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /home/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
        reuseNode true
       }
      }
@@ -131,7 +131,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /home/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
        reuseNode true
       }
      }
@@ -145,7 +145,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /home/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
        reuseNode true
       }
      }
@@ -158,7 +158,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args "-v /home/.m2/repository:/root/.m2/repository"
+       args "-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository"
        reuseNode true
       }
      }
