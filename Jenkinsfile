@@ -28,7 +28,21 @@ pipeline {
     checkout scm
    }
   }
-  stage('Build') {
+  stage('Caching') {
+     agent {
+      docker {
+       image 'maven:3.6.0-jdk-8-alpine'
+       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2/settings.xml:/usr/share/maven/conf/settings.xml'
+       // to use the same node and workdir defined on top-level pipeline for all docker agents
+       reuseNode true
+      }
+     }
+     steps {
+      sh ' mvn dependency:go-offline'
+     }
+  }
+ stage('Build') {
    parallel {
     stage('Compile') {
      agent {
