@@ -163,7 +163,7 @@ pipeline {
       }
      }
      steps {
-      sh " mvn -o sonar:sonar -Dsonar.host.url=$SONARQUBE_URL:$SONARQUBE_PORT"
+      sh " mvn sonar:sonar -Dsonar.host.url=$SONARQUBE_URL:$SONARQUBE_PORT"
      }
     }
    }
