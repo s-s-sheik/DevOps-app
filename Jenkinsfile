@@ -52,7 +52,6 @@ pipeline {
       }
      }
      steps {
-      sh ' sleep 100'
       sh ' mvn -o checkstyle:checkstyle'
       step([$class: 'CheckStylePublisher',
        //canRunOnFailed: true,
@@ -73,8 +72,7 @@ pipeline {
    agent {
     docker {
      image 'maven:3.6.0-jdk-8-alpine'
-     args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
-     args '-v /Users/sirajuddin_s/.m2/settings.xml:/usr/share/maven/conf/settings.xml'
+     args '-v /Users/sirajuddin_s/.m2:/root/.m2'
      reuseNode true
     }
    }
@@ -94,8 +92,7 @@ pipeline {
    agent {
     docker {
      image 'maven:3.6.0-jdk-8-alpine'
-     args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
-     args '-v /Users/sirajuddin_s/.m2/settings.xml:/usr/share/maven/conf/settings.xml'
+     args '-v /Users/sirajuddin_s/.m2:/root/.m2'
      reuseNode true
     }
    }
@@ -120,8 +117,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
-       args '-v /Users/sirajuddin_s/.m2/settings.xml:/usr/share/maven/conf/settings.xml'
+       args '-v /Users/sirajuddin_s/.m2:/root/.m2'
        reuseNode true
       }
      }
@@ -135,7 +131,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
+       args '-v /Users/sirajuddin_s/.m2:/root/.m2'
        reuseNode true
       }
      }
@@ -149,8 +145,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args '-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository'
-       args '-v /Users/sirajuddin_s/.m2/settings.xml:/usr/share/maven/conf/settings.xml'
+       args '-v /Users/sirajuddin_s/.m2:/root/.m2'
        reuseNode true
       }
      }
@@ -163,8 +158,7 @@ pipeline {
      agent {
       docker {
        image 'maven:3.6.0-jdk-8-alpine'
-       args "-v /Users/sirajuddin_s/.m2/repository:/root/.m2/repository"
-       args '-v /Users/sirajuddin_s/.m2/settings.xml:/usr/share/maven/conf/settings.xml'
+       args '-v /Users/sirajuddin_s/.m2:/root/.m2'
        reuseNode true
       }
      }
