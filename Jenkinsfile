@@ -163,7 +163,6 @@ pipeline {
       }
      }
      steps {
-      sh " sleep 200"
       sh " mvn sonar:sonar -Dsonar.host.url=$SONARQUBE_URL:$SONARQUBE_PORT"
      }
     }
