@@ -6,7 +6,7 @@ pipeline {
   // This can be http or https
   NEXUS_PROTOCOL = "http"
   // Where your Nexus is running. In my case:
-  NEXUS_URL = "ec2-52-212-29-159.eu-west-1.compute.amazonaws.com:8081"
+  NEXUS_URL = "dockerhost:8081"
   // Repository where we will upload the artifact
   NEXUS_REPOSITORY = "maven-snapshots"
   // Jenkins credential id to authenticate to Nexus OSS
@@ -16,7 +16,7 @@ pipeline {
     to obtains this address : $ docker-machine ip
     Linux: set localhost to SONARQUBE_URL
   */
-  SONARQUBE_URL = "http://192.168.99.100"
+  SONARQUBE_URL = "http://dockerhost"
   SONARQUBE_PORT = "9000"
  }
  options {
@@ -41,7 +41,7 @@ pipeline {
       }
      }
      steps {
-      sh ' mvn clean compile'
+      sh ' mvn -o clean compile'
      }
     }
     stage('CheckStyle') {
@@ -54,7 +54,7 @@ pipeline {
       }
      }
      steps {
-      sh ' mvn checkstyle:checkstyle'
+      sh ' mvn -o checkstyle:checkstyle'
       step([$class: 'CheckStylePublisher',
        //canRunOnFailed: true,
        defaultEncoding: '',
@@ -80,7 +80,7 @@ pipeline {
     }
    }
    steps {
-    sh 'mvn test'
+    sh 'mvn -o test'
    }
    post {
     always {
@@ -101,7 +101,7 @@ pipeline {
     }
    }
    steps {
-    sh 'mvn verify -Dsurefire.skip=true'
+    sh 'mvn -o verify -Dsurefire.skip=true'
    }
    post {
     always {
@@ -127,7 +127,7 @@ pipeline {
       }
      }
      steps {
-      sh ' mvn pmd:pmd'
+      sh ' mvn -o pmd:pmd'
       // using pmd plugin
       step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
      }
@@ -141,7 +141,7 @@ pipeline {
       }
      }
      steps {
-      sh ' mvn findbugs:findbugs'
+      sh ' mvn -o findbugs:findbugs'
       // using findbugs plugin
       findbugs pattern: '**/target/findbugsXml.xml'
      }
@@ -156,7 +156,7 @@ pipeline {
       }
      }
      steps {
-      sh ' mvn javadoc:javadoc'
+      sh ' mvn -o javadoc:javadoc'
       step([$class: 'JavadocArchiver', javadocDir: './target/site/apidocs', keepAll: 'true'])
      }
     }
@@ -170,7 +170,7 @@ pipeline {
       }
      }
      steps {
-      sh " mvn sonar:sonar -Dsonar.host.url=$SONARQUBE_URL:$SONARQUBE_PORT"
+      sh " mvn -o sonar:sonar -Dsonar.host.url=$SONARQUBE_URL:$SONARQUBE_PORT"
      }
     }
    }
