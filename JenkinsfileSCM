@@ -7,7 +7,7 @@ stages {
     stage('SCM') {
       steps {
         echo "entered into SCM Stage"
-        sh "cd /var/jenkins_home"
+        sh "ls -al \"
         checkout scm
       }
     }
