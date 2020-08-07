@@ -7,7 +7,8 @@ stages {
     stage('SCM') {
       steps {
         echo "entered into SCM Stage"
-        sh "ls -al \"
+        sh "ls /var"
+        sh "cd /var"
         checkout scm
       }
     }
