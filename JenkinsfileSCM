@@ -1,0 +1,14 @@
+pipeline {
+ agent {label 'jenkins-slave'}
+ options {
+  skipDefaultCheckout()
+ }
+stages {
+    stage('SCM') {
+      steps {
+        echo "entered into SCM Stage"
+        checkout scm
+      }
+    }
+  }
+}
