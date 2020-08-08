@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            customWorkspace '/home/jenkins/agent/workspace/CI_SCM'
+            customWorkspace '/home/jenkins/agent/workspace/DevOps'
             label 'CI'
             defaultContainer 'jnlp'
             yamlFile 'k8sworkerpod.yaml'
