@@ -1,5 +1,12 @@
 pipeline {
- agent {label 'jenkins-slave'}
+ agent {
+         kubernetes {
+            customWorkspace '/home/jenkins/agent/workspace/DevOps'
+            label 'CI'
+            defaultContainer 'jnlp'
+            yamlFile 'k8sworkerpod.yaml'
+        }
+  }
  options {
   skipDefaultCheckout()
  }
