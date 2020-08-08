@@ -1,0 +1,29 @@
+pipeline {
+    agent {
+        kubernetes {
+            customWorkspace '/home/jenkins/agent/workspace/CI_SCM'
+            label 'CI'
+            defaultContainer 'jnlp'
+            yamlFile 'k8sworkerpod.yaml'
+        }
+    }
+stages {
+    stage('CheckStyle') {
+     steps {
+        echo " Working outside"
+        container('maven') {
+          echo " Working inside the maven container"
+          sh ' mvn checkstyle:checkstyle'
+          step([$class: 'CheckStylePublisher',
+          //canRunOnFailed: true,
+          defaultEncoding: '',
+          healthy: '100',
+          pattern: '**/target/checkstyle-result.xml',
+          unHealthy: '90',
+          //useStableBuildAsReference: true
+          ])
+        }
+     }
+    }
+  }
+}
