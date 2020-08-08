@@ -1,0 +1,45 @@
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+spec:
+  containers:
+  - command:
+    - "jenkins-agent"
+    image: "utilitynode"
+    imagePullPolicy: "IfNotPresent"
+    name: "jnlp"
+    securityContext:
+      privileged: true
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "slave-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - name: "maven"
+    image: "maven:3.6.0-jdk-8-alpine"
+    imagePullPolicy: "IfNotPresent"
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "slave-volume"
+      readOnly: false
+    - mountPath: "/root/.m2"
+      name: "maven-repo-volume"
+      readOnly: false
+  hostNetwork: false
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  volumes:
+  - hostPath:
+      path: "/Users/sirajuddin_s/jenkinslave"
+    name: "workspace-volume"
+  - hostPath:
+      path: "/Users/sirajuddin_s/jenkinslave"
+    name: "slave-volume"    
+  - hostPath:
+      path: "/Users/sirajuddin_s/.m2"
+    name: "maven-repo-volume"    
