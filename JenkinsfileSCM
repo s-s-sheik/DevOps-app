@@ -1,7 +1,7 @@
 pipeline {
  agent {
          kubernetes {
-            customWorkspace '/home/jenkins/agent/workspace/DevOps'
+            customWorkspace '/Users/sirajuddin_s/persiststorage/workspace/DevOps'
             label 'CI'
             defaultContainer 'jnlp'
             yamlFile 'k8sworkerpod.yaml'
