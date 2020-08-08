@@ -13,7 +13,7 @@ spec:
     tty: true
     volumeMounts:
     - mountPath: "/home/jenkins/agent"
-      name: "slave-volume"
+      name: "jenkins-volume-claim"
       readOnly: false
     workingDir: "/home/jenkins/agent"
   - name: "maven"
@@ -24,7 +24,7 @@ spec:
     tty: true
     volumeMounts:
     - mountPath: "/home/jenkins/agent"
-      name: "slave-volume"
+      name: "jenkins-volume-claim"
       readOnly: false
     - mountPath: "/root/.m2"
       name: "maven-repo-volume"
@@ -43,3 +43,6 @@ spec:
   - hostPath:
       path: "/Users/sirajuddin_s/.m2"
     name: "maven-repo-volume"    
+  - name: "persist-volume"
+    persistentVolumeClaim:
+      claimName: jenkins-volume-claim
